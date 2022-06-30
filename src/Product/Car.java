@@ -1,14 +1,12 @@
 package Product;
 
-import Product.Transport;
-
 public class Car extends Transport {
     private String address;
     private String gearbox;
     private int window;
     private int km;
 
-    public Car() {
+    public Car(int id, String name, String color, int date, Brand brand, String condition, String vehicles, String address, String gearbox, int window, int km) {
     }
 
     public Car(String address, String gearbox, int window, int km) {
@@ -18,13 +16,13 @@ public class Car extends Transport {
         this.km = km;
     }
 
-    public Car(int id, String name, String color, int date, String brand, String condition, String vehicles, String address, String gearbox, int window, int km) {
-        super(id, name, color, date, brand, condition, vehicles);
-        this.address = address;
-        this.gearbox = gearbox;
-        this.window = window;
-        this.km = km;
-    }
+//    public Car(int id, String name, String color, int date, Brand brand, String condition, String vehicles, String address, String gearbox, int window, int km) {
+//        super(id, name, color, date, brand, condition, vehicles);
+//        this.address = address;
+//        this.gearbox = gearbox;
+//        this.window = window;
+//        this.km = km;
+//    }
 
     public String getAddress() {
         return address;

@@ -4,14 +4,14 @@ public class Transport {
     private String name;
     private String color;
     private int date;
-    private String brand;
+    private Brand brand;
     private String condition;
     private String vehicles;
 
     public Transport() {
     }
 
-    public Transport(int id, String name, String color, int date, String brand, String condition, String vehicles) {
+    public Transport(int id, String name, String color, int date, Brand brand, String condition, String vehicles) {
         this.id = id;
         this.name = name;
         this.color = color;
@@ -53,12 +53,15 @@ public class Transport {
         this.date = date;
     }
 
-    public String getBrand() {
+    public Brand getBrand() {
         return brand;
     }
 
-    public void setBrand(String brand) {
+    public void setBrand(Brand brand) {
         this.brand = brand;
+    }
+    public  String getBrandName(){
+        return brand.getName();
     }
 
     public String getCondition() {

@@ -8,7 +8,9 @@ import ProductManager.MotoBikeManager;
 import java.util.Scanner;
 
 public class AdminMenu {
-    public static void Menu() {
+    public static void main(String[] args) {
+
+
 
 
         Scanner scanner = new Scanner(System.in);
@@ -40,12 +42,15 @@ public class AdminMenu {
                         choice = scanner.nextInt();
                         switch (choice) {
                             case 1:
+                                carManager.displayBrandMoto();
                                 carManager.addCar(scanner);
                                 break;
                             case 2:
+                                bicycleManage.displayBrandB();
                                 bicycleManage.addBicycles(scanner);
                                 break;
                             case 3:
+                                motoBikeManager.displayBrand();
                                 motoBikeManager.addMotoBike(scanner);
                                 break;
                         }
