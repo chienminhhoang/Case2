@@ -97,7 +97,7 @@ public class MotoBikeManager implements Serializable {
     }
     public void updateMotoBikeById(Scanner scanner){
         int id= scanner.nextInt();
-        System.out.println("Enter id moto bike want to update");
+
         for (int i = 0; i <motoBikes.size() ; i++) {
             if(motoBikes.get(i).getId() == id ){
                 MotoBike motoBike = createMotoBike(scanner);

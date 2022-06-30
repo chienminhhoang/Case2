@@ -81,7 +81,6 @@ public class AdminMenu {
                         }
                         break;
                     } while (choice != 0);
-                    break;
                 case 3:
                     do {
                         System.out.println("|--------------------------|");
@@ -97,7 +96,8 @@ public class AdminMenu {
                                 carManager.updateCarById(scanner);
                                 break;
                             case 2:
-                                bicycleManage.updateMotoBikeById(scanner);
+                                System.out.println("Enter id moto bike want to update");
+                                bicycleManage.UpdateBicycleById(scanner);
                                 break;
                             case 3:
                                 motoBikeManager.updateMotoBikeById(scanner);
@@ -105,7 +105,6 @@ public class AdminMenu {
                         }
                         break;
                     } while (choice != 0);
-                    break;
 
 
                 case 4:
@@ -138,7 +137,6 @@ public class AdminMenu {
                                     }
                                     break;
                                 } while (choice != 0);
-                                break;
                             case 2:
                                 do {
                                     System.out.println("|--------------------------|");
@@ -174,6 +172,7 @@ public class AdminMenu {
                                             break;
                                         case 2:
                                             bicycleManage.displayById(scanner);
+
                                             break;
                                     }
                                     break;
@@ -182,6 +181,7 @@ public class AdminMenu {
                         }
 
                     } while (choice != 0);
+                    break;
 
             }
 

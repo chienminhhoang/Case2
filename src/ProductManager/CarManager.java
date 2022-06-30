@@ -113,6 +113,7 @@ public void displayBrandSame(Scanner scanner){
         for (int i = 0; i < cars.size(); i++) {
             if (cars.get(i).getId() == id) {
                 Car car = createCar(scanner);
+                cars.add(car);
             }
 
         }

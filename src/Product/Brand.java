@@ -4,6 +4,7 @@ public class Brand {
     private String name;
 
     public Brand(String brand) {
+        this.name = brand;
     }
 
     public String getName() {

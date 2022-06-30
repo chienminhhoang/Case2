@@ -92,7 +92,7 @@ public class BicycleManage implements Serializable {
 
         }
     }
-    public void updateMotoBikeById(Scanner scanner){
+    public void UpdateBicycleById(Scanner scanner){
         int id = scanner.nextInt();
         System.out.println("Enter id moto bike want to update");
         for (int i = 0; i <bicycles.size() ; i++) {
@@ -103,8 +103,8 @@ public class BicycleManage implements Serializable {
         }
     }
     public void displayAll(){
-        for (Bicycle b: bicycles ){
-            System.out.println(b);
+        for (Bicycle bicycle: bicycles ){
+            System.out.println(bicycle);
         }
     }
     public void displayById(Scanner scanner){
