@@ -9,14 +9,11 @@ import java.util.Scanner;
 
 public class AdminMenu {
     public static void main(String[] args) {
-
-
-
-
         Scanner scanner = new Scanner(System.in);
         CarManager carManager = new CarManager();
         MotoBikeManager motoBikeManager = new MotoBikeManager();
         BicycleManage bicycleManage = new BicycleManage();
+
         int choice;
 
         do {
@@ -129,7 +126,7 @@ public class AdminMenu {
                                     choice = scanner.nextInt();
                                     switch (choice) {
                                         case 1:
-                                            carManager.displayAll();
+                                          carManager.displayAll();
                                             break;
                                         case 2:
                                             carManager.displayById(scanner);
@@ -148,10 +145,10 @@ public class AdminMenu {
                                     choice = scanner.nextInt();
                                     switch (choice) {
                                         case 1:
-                                            motoBikeManager.displayAll();
+                                            bicycleManage.displayAll();
                                             break;
                                         case 2:
-                                            motoBikeManager.displayById(scanner);
+                                            bicycleManage.displayById(scanner);
                                             break;
                                     }
                                     break;
@@ -168,10 +165,10 @@ public class AdminMenu {
                                     choice = scanner.nextInt();
                                     switch (choice) {
                                         case 1:
-                                            bicycleManage.displayAll();
+                                            motoBikeManager.displayAll();
                                             break;
                                         case 2:
-                                            bicycleManage.displayById(scanner);
+                                            motoBikeManager.displayById(scanner);
 
                                             break;
                                     }

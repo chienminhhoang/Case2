@@ -1,9 +1,10 @@
 package ProductManager;
 
+import HandleFile.FileIO;
 import Product.Brand;
 import Product.Car;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -25,16 +26,21 @@ public class CarManager implements Serializable {
         brands.add(new Brand("Lexus"));
         brands.add(new Brand("Suzuki"));
         brands.add(new Brand("VinFast"));
+
+        fileIO = new FileIO();
+        cars = fileIO.readDataFromFile("cars.txt");
     }
 
-    ArrayList<Car> cars = new ArrayList<>();
+    ArrayList<Car> cars;
     ArrayList<Brand> brands = new ArrayList<>();
+
+    FileIO fileIO;
 
 
     public void addCar(Scanner scanner) {
         Car car = createCar(scanner);
         cars.add(car);
-
+        fileIO.writeDataToFile(cars, "cars.txt");
     }
 
     public Car createCar(Scanner scanner) {
@@ -50,25 +56,30 @@ public class CarManager implements Serializable {
         }
         System.out.println("Enter Id Car:");
         int id = scanner.nextInt();
+        scanner.nextLine();
         System.out.println("Enter name car:");
-        String name = scanner.next();
+        String name = scanner.nextLine();
         System.out.println("Enter Color car:");
-        String color = scanner.next();
+        String color = scanner.nextLine();
         System.out.println("Enter date car");
         int date = scanner.nextInt();
+        System.out.println("Enter price");
+        int price =scanner.nextInt();
+        scanner.nextLine();
         System.out.println("Enter condition:");
-        String condition = scanner.next();
+        String condition = scanner.nextLine();
         System.out.println("Enter vehicles:");
-        String vehicles = scanner.next();
+        String vehicles = scanner.nextLine();
         System.out.println("Enter address:");
-        String address = scanner.next();
+        String address = scanner.nextLine();
         System.out.println("Enter gearbox");
-        String gearbox = scanner.next();
+        String gearbox = scanner.nextLine();
         System.out.println("Enter window in car");
         int window = scanner.nextInt();
         System.out.println("Enter KM");
         int km = scanner.nextInt();
-        Car car = new Car(id,name,color,date,brand,condition,vehicles,address,gearbox,window,km);
+        scanner.nextLine();
+        Car car = new Car(id,name,color,date,price,brand,condition,vehicles,address,gearbox,window,km);
         return car;
 
     }
@@ -93,11 +104,14 @@ public void displayBrandSame(Scanner scanner){
     }
 }
     public void removeCarById(Scanner scanner) {
-        int id = scanner.nextInt();
+
         System.out.println("Enter id car want to remove:");
+        int id = scanner.nextInt();
+
         for (int i = 0; i < cars.size(); i++) {
             if (cars.get(i).getId() == id) {
                 cars.remove(i);
+                fileIO.writeDataToFile(cars, "cars.txt");
             }
         }
     }
@@ -108,12 +122,14 @@ public void displayBrandSame(Scanner scanner){
     }
 
     public void updateCarById(Scanner scanner) {
-        int id = scanner.nextInt();
         System.out.println("Enter id car want to update");
+        int id = scanner.nextInt();
+
         for (int i = 0; i < cars.size(); i++) {
             if (cars.get(i).getId() == id) {
                 Car car = createCar(scanner);
-                cars.add(car);
+                cars.set(i, car);
+                fileIO.writeDataToFile(cars, "cars.txt");
             }
 
         }
@@ -131,10 +147,33 @@ public void displayBrandSame(Scanner scanner){
         int id = scanner.nextInt();
         for (int i = 0; i < cars.size(); i++) {
             if (cars.get(i).getId() == id) {
-                System.out.println(i);
+                System.out.println(cars.get(i).toString());
             }
         }
 
+    }
+    public void writeDocuments(ArrayList<Car>cars ){
+        File file = new File("Car.txt");
+        try{
+            if(file.exists()){
+                file.createNewFile();
+            }
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(file));
+            objectOutputStream.writeObject(cars);
+            objectOutputStream.close();
+        } catch (Exception e){
+            System.out.println("File already exists");
+        }
+    }
+    public void readDocuments(ArrayList<Car>cars){
+        File file = new File("Car.txt");
+        try{
+            ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(file));
+            cars = (ArrayList<Car>) objectInputStream.readObject();
+            objectInputStream.close();
+        }catch (Exception e){
+            System.out.println("File already exists");
+        }
     }
 
 }

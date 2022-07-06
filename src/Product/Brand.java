@@ -1,6 +1,8 @@
 package Product;
 
-public class Brand {
+import java.io.Serializable;
+
+public class Brand implements Serializable {
     private String name;
 
     public Brand(String brand) {

@@ -8,8 +8,8 @@ public class MotoBike extends Transport {
         CubicCentimetre = cubicCentimetre;
     }
 
-    public MotoBike(int id, String name, String color, int date, Brand brand, String condition, String vehicles, String cubicCentimetre) {
-        super(id, name, color, date,  brand, condition, vehicles);
+    public MotoBike(int id, String name, String color, int date, int price, Brand brand, String condition, String vehicles, String cubicCentimetre) {
+        super(id, name, color, date ,price,  brand, condition, vehicles);
         this.CubicCentimetre = cubicCentimetre;
     }
 
@@ -25,6 +25,14 @@ public class MotoBike extends Transport {
     public String toString() {
         return "MotoBike{" +
                 "CubicCentimetre='" + CubicCentimetre + '\'' +
+                ", id=" + id +
+                ", name='" + name + '\'' +
+                ", color='" + color + '\'' +
+                ", date=" + date +
+                ", price=" + price +
+                ", brand=" + brand +
+                ", condition='" + condition + '\'' +
+                ", vehicles='" + vehicles + '\'' +
                 '}';
     }
 }

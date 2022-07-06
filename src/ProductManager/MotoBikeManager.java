@@ -1,9 +1,11 @@
 package ProductManager;
 
+import HandleFile.FileIO;
 import Product.Brand;
 import Product.MotoBike;
 
-import java.io.Serializable;
+import java.io.*;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -22,12 +24,16 @@ public class MotoBikeManager implements Serializable {
         brands.add(new Brand("Bazan"));
         brands.add(new Brand("BMW"));
         brands.add(new Brand("GPX"));
+        fileIO = new FileIO();
+        motoBikes= fileIO.readDataFromFile("motoBikes.txt");
     }
     ArrayList<MotoBike> motoBikes = new ArrayList<>();
     ArrayList<Brand> brands = new ArrayList<>();
+    FileIO fileIO;
     public void addMotoBike(Scanner scanner){
         MotoBike motoBike = createMotoBike(scanner);
         motoBikes.add(motoBike);
+        fileIO.writeDataToFile(motoBikes, "motoBikes.txt");
     }
     public MotoBike createMotoBike(Scanner scanner){
         System.out.println("Enter brand");
@@ -49,6 +55,8 @@ public class MotoBikeManager implements Serializable {
         String color = scanner.next();
         System.out.println("Enter date ");
         int date = scanner.nextInt();
+        System.out.println("Enter price");
+        int price = scanner.nextInt();
         System.out.println("Enter condition:");
         String condition = scanner.next();
         System.out.println("Enter vehicles:");
@@ -56,7 +64,7 @@ public class MotoBikeManager implements Serializable {
         System.out.println("Enter cubicCentimetre");
         String cubicCentimetre= scanner.next();
 
-        MotoBike motoBike = new MotoBike(id,name,color,date,brand,condition,vehicles,cubicCentimetre);
+        MotoBike motoBike = new MotoBike(id,name,color,date,price,brand,condition,vehicles,cubicCentimetre);
         return motoBike;
     }
     public void displayBrand2(Scanner scanner){
@@ -86,8 +94,9 @@ public class MotoBikeManager implements Serializable {
         }
     }
     public void removeMotoBikeById(Scanner scanner){
-        int id = scanner.nextInt();
         System.out.println("Enter id moto bike want to remove");
+        int id = scanner.nextInt();
+
         for (int i = 0; i <motoBikes.size() ; i++) {
             if(motoBikes.get(i).getId() == id){
                 motoBikes.remove(i);
@@ -96,12 +105,14 @@ public class MotoBikeManager implements Serializable {
         }
     }
     public void updateMotoBikeById(Scanner scanner){
+        System.out.println("Enter id ");
         int id= scanner.nextInt();
 
         for (int i = 0; i <motoBikes.size() ; i++) {
             if(motoBikes.get(i).getId() == id ){
                 MotoBike motoBike = createMotoBike(scanner);
-                motoBikes.add(motoBike);
+                motoBikes.set(i,motoBike);
+                fileIO.writeDataToFile(motoBikes,"motoBike.txt");
             }
         }
     }
@@ -118,6 +129,26 @@ public class MotoBikeManager implements Serializable {
             if(motoBikes.get(i).getId() == id){
                 System.out.println(i);
             }
+        }
+    }
+    public void writeDocuments(ArrayList<MotoBike> motoBikes){
+        File file = new File("MotoBike.txt");
+        try{
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(file));
+            objectOutputStream.writeObject(motoBikes);
+            objectOutputStream.close();
+        } catch (Exception e){
+            System.out.println("File already exists");
+        }
+    }
+    public void readDocuments(ArrayList<MotoBike>motoBikes){
+        File file = new File("MotoBike.txt");
+        try{
+            ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(file));
+            motoBikes = (ArrayList<MotoBike>) objectInputStream.readObject();
+            objectInputStream.close();
+        } catch (Exception e){
+            System.out.println("File already exists");
         }
     }
 }

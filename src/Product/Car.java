@@ -1,22 +1,26 @@
 package Product;
 
+import java.io.Serializable;
+
 public class Car extends Transport {
     private String address;
     private String gearbox;
     private int window;
     private int km;
 
-    public Car(int id, String name, String color, int date, Brand brand, String condition, String vehicles, String address, String gearbox, int window, int km) {
+    public Car() {
     }
 
-    public Car(String address, String gearbox, int window, int km) {
+
+
+    public Car(int id, String name, String color, int date, int price, Brand brand, String condition, String vehicles, String address, String gearbox, int window, int km) {
+        super(id, name, color, date, price, brand, condition, vehicles);
         this.address = address;
         this.gearbox = gearbox;
         this.window = window;
         this.km = km;
     }
-
-//    public Car(int id, String name, String color, int date, Brand brand, String condition, String vehicles, String address, String gearbox, int window, int km) {
+    //    public Car(int id, String name, String color, int date, Brand brand, String condition, String vehicles, String address, String gearbox, int window, int km) {
 //        super(id, name, color, date, brand, condition, vehicles);
 //        this.address = address;
 //        this.gearbox = gearbox;
@@ -63,6 +67,14 @@ public class Car extends Transport {
                 ", gearbox='" + gearbox + '\'' +
                 ", window=" + window +
                 ", km=" + km +
+                ", id=" + id +
+                ", name='" + name + '\'' +
+                ", color='" + color + '\'' +
+                ", date=" + date +
+                ", price=" + price +
+                ", brand=" + brand +
+                ", condition='" + condition + '\'' +
+                ", vehicles='" + vehicles + '\'' +
                 '}';
     }
 }
