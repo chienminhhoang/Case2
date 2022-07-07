@@ -1,6 +1,7 @@
 package ProductManager;
 
 import HandleFile.FileIO;
+import Menu.UserMenu;
 import Product.Brand;
 import Product.MotoBike;
 
@@ -93,6 +94,15 @@ public class MotoBikeManager implements Serializable {
             
         }
     }
+    public void addToCartById(Scanner scanner){
+        System.out.println("Enter id want add to cart");
+        int id= scanner.nextInt();
+        for(int i =0;i<motoBikes.size();i++){
+            if(motoBikes.get(i).getId() == id){
+                UserMenu.cart.put(motoBikes.get(i),1);
+            }
+        }
+    }
     public void removeMotoBikeById(Scanner scanner){
         System.out.println("Enter id moto bike want to remove");
         int id = scanner.nextInt();
@@ -127,7 +137,7 @@ public class MotoBikeManager implements Serializable {
         int id = scanner.nextInt();
         for (int i = 0; i <motoBikes.size() ; i++) {
             if(motoBikes.get(i).getId() == id){
-                System.out.println(i);
+                System.out.println(motoBikes.get(i).toString());
             }
         }
     }

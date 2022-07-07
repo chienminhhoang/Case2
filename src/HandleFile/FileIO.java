@@ -3,7 +3,7 @@ package HandleFile;
 import java.io.*;
 import java.util.ArrayList;
 
-public class FileIO {
+public class FileIO<T> {
     public <T> void writeDataToFile(ArrayList<T> list, String fileName){
         File file = new File(fileName);
         try {

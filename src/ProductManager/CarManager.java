@@ -1,6 +1,7 @@
 package ProductManager;
 
 import HandleFile.FileIO;
+import Menu.UserMenu;
 import Product.Brand;
 import Product.Car;
 
@@ -152,6 +153,16 @@ public void displayBrandSame(Scanner scanner){
         }
 
     }
+
+    public void addToCartById(Scanner scanner){
+        System.out.println("Enter id want add to cart");
+        int id= scanner.nextInt();
+        for(int i =0;i<cars.size();i++){
+            if(cars.get(i).getId() == id){
+                UserMenu.cart.put(cars.get(i),1);
+            }
+        }
+    }
     public void writeDocuments(ArrayList<Car>cars ){
         File file = new File("Car.txt");
         try{
@@ -175,5 +186,6 @@ public void displayBrandSame(Scanner scanner){
             System.out.println("File already exists");
         }
     }
+
 
 }

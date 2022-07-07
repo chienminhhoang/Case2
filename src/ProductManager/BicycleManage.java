@@ -1,6 +1,7 @@
 package ProductManager;
 
 import HandleFile.FileIO;
+import Menu.UserMenu;
 import Product.Bicycle;
 import Product.Brand;
 import Product.MotoBike;
@@ -91,7 +92,14 @@ public class BicycleManage implements Serializable {
             System.out.println((i+1)+"."+brands.get(i).getName());
         }
     }
-
+    public void addToCartById(Scanner scanner){
+        int id =scanner.nextInt();
+        for(int i =0;i<bicycles.size();i++){
+            if(bicycles.get(i).getId() == id){
+                UserMenu.cart.put(bicycles.get(i),1);
+            }
+        }
+    }
     public void removeBicycleById(Scanner scanner){
 
         System.out.println("Enter id moto bike want to remove");
@@ -111,7 +119,8 @@ public class BicycleManage implements Serializable {
             if(bicycles.get(i).getId() == id ){
               Bicycle bicycle = createBicycle(scanner);
               bicycles.set(i,bicycle);
-              fileIO.writeDataToFile(bicycles, "bicycles.txt");
+              fileIO.writeDataToFile(bicycles, "bicycles.txt" +
+                      "");
             }
         }
     }
@@ -121,14 +130,15 @@ public class BicycleManage implements Serializable {
         }
     }
     public void displayById(Scanner scanner){
-        System.out.println("....");
+        System.out.println("Enter id ");
         int id = scanner.nextInt();
         for (int i = 0; i <bicycles.size() ; i++) {
         if(bicycles.get(i).getId() == id){
-            System.out.println(i);
+            System.out.println(bicycles.get(i).toString());
         }
         }
     }
+
     public  void writeDocuments(ArrayList<Bicycle>bicycles){
         File file  = new File("Bicycle.txt");
         try {if(file.exists()){
