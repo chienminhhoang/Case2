@@ -7,14 +7,15 @@ public class FileIO<T> {
     public <T> void writeDataToFile(ArrayList<T> list, String fileName){
         File file = new File(fileName);
         try {
-            file.createNewFile();
+            if(file.exists()){
+                file.createNewFile();}
             FileOutputStream fos = new FileOutputStream(file);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(list);
             oos.close();
             fos.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 

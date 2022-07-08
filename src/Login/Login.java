@@ -214,7 +214,7 @@ public class Login {
     private String enterEmail() {
         String email;
         while (true) {
-            System.out.print("┠ ▹ Nhập email: ");
+            System.out.print("Enter email : ");
             String inputEmail = scanner.nextLine();
             if (!Validate.validateEmail(inputEmail)) {
                 System.out.println(" Email invalid !!!");
